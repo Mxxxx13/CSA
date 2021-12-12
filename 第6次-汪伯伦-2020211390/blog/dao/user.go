@@ -26,18 +26,27 @@ func Login(username string) (password string, err error) {
 	return user.Password, nil
 }
 
-func GetUid(username string) (id int, err error) {
+// GetUid 根据username查询uid
+func GetUid(username string) (uid uint, err error) {
 	var user model.User
 	if err = DB.Where("username = ?", username).First(&user).Error; err != nil {
 		return
 	}
-	return int(user.ID), nil
+	return user.ID, nil
 }
 
+// GetUsername 根据uid查询username
 func GetUsername(uid uint) (username string, err error) {
 	var user model.User
 	if err = DB.Select("username").Where("id = ?", uid).First(&user).Error; err != nil {
 		return
 	}
 	return user.Username, err
+}
+
+func ShowUser(uid uint) (user model.User,err error) {
+	if err = DB.Where("id = ?", uid).First(&user).Error; err != nil {
+		return
+	}
+	return
 }

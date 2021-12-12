@@ -34,7 +34,7 @@ func Login(c *gin.Context) {
 		resp.ErrorResp(c, http.StatusBadRequest, msg)
 
 	} else {
-		jwt := util.NewJWT(uint(id), username)
+		jwt := util.NewJWT(id, username)
 		msg := "欢迎回来" + username
 
 		c.JSON(http.StatusOK,gin.H{
@@ -51,9 +51,15 @@ func Login(c *gin.Context) {
 
 // ShowUser
 func ShowUser(c *gin.Context)  {
-
+	userResp,err := service.ShowUser(c)
+	if err != nil {
+		resp.ErrorResp(c, http.StatusBadRequest, "操作失败")
+	} else {
+		resp.SuccessResp(c, "操作成功",userResp)
+	}
 }
 
+// AlterUser
 func AlterUser(c *gin.Context)  {
 
 }

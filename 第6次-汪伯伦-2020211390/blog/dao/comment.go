@@ -15,8 +15,7 @@ func UploadComment(comment model.Comment) (err error) {
 }
 
 func GetComments(bid int) (comments []model.Comment, err error) {
-	err = DB.Where("bid = ?",bid).Find(&comments).Error
-	if err != nil {
+	if err = DB.Where("bid = ?",bid).Find(&comments).Error;err != nil {
 		return
 	}
 	return

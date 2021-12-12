@@ -9,6 +9,12 @@ import "github.com/jinzhu/gorm"
 
 type User struct {
 	*gorm.Model
-	Username string `json:"username"`	// 用户名
-	Password string						// 密码
+	Username string `json:"username"` // 用户名
+	Password string // 密码
+}
+
+type UserResp struct {
+	Uid      uint       `json:"uid"`       // 用户id
+	Username string     `json:"username"`  // 用户名
+	BlogList []BlogList `json:"blog_list"` // 博客列表
 }

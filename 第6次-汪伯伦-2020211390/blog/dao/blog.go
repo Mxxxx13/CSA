@@ -59,3 +59,10 @@ func DeleteBlog(id int) (err error) {
 	}
 	return
 }
+
+func GetBlog(uid uint) (blog []model.Blog, err error) {
+	if err = DB.Where("uid = ?", uid).Find(&blog).Error; err != nil {
+		return
+	}
+	return
+}
