@@ -61,5 +61,10 @@ func ShowUser(c *gin.Context)  {
 
 // AlterUser
 func AlterUser(c *gin.Context)  {
-
+	err := service.AlterUser(c)
+	if err != nil {
+		resp.ErrorResp(c, http.StatusBadRequest, "修改失败")
+	} else {
+		resp.SuccessResp(c, "修改成功")
+	}
 }

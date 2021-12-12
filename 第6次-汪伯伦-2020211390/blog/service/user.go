@@ -39,6 +39,7 @@ func Login(c *gin.Context) (uid uint,err error) {
 	return
 }
 
+// ShowUser
 func ShowUser(c *gin.Context) (UserResp model.UserResp,err error){
 	strId := c.Param("id")
 	id, err := strconv.Atoi(strId)
@@ -67,5 +68,16 @@ func ShowUser(c *gin.Context) (UserResp model.UserResp,err error){
 		Username: username,
 		BlogList: blogList,
 	}
+	return
+}
+
+// AlterUser
+func AlterUser(c *gin.Context) (err error){
+	username := c.PostForm("username")
+	id, exists := c.Get("uid")
+	if !exists  {
+		return errors.New("id not exist")
+	}
+	err = dao.AlterUser(username,id.(uint))
 	return
 }

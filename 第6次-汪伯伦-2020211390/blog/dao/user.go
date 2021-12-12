@@ -44,8 +44,20 @@ func GetUsername(uid uint) (username string, err error) {
 	return user.Username, err
 }
 
+// ShowUser
 func ShowUser(uid uint) (user model.User,err error) {
 	if err = DB.Where("id = ?", uid).First(&user).Error; err != nil {
+		return
+	}
+	return
+}
+
+// AlterUser
+func AlterUser(username string,uid uint) (err error) {
+	var user model.User
+	if err = DB.Model(&user).Where("id = ?", uid).Updates(model.User{
+		Username: username,
+	}).Error; err != nil {
 		return
 	}
 	return

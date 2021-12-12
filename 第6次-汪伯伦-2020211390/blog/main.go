@@ -21,7 +21,7 @@ func main() {
 	r.POST("/user", controller.Register)
 	r.GET("/user/login", controller.Login)
 	r.GET("/user/:id",controller.ShowUser)
-	r.PUT("/user/:id",controller.AlterUser)
+	login.PUT("/user/:id",controller.AlterUser)
 
 	r.GET("/blog/:id", controller.ShowBlog)
 	login.POST("/blog", controller.UploadBlog)
