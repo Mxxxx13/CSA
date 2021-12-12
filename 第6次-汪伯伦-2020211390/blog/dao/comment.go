@@ -20,3 +20,10 @@ func GetComments(bid int) (comments []model.Comment, err error) {
 	}
 	return
 }
+
+func DeleteComment(cid uint) (err error){
+	if err = DB.Delete(&model.Comment{}, cid).Error; err != nil {
+		return
+	}
+	return
+}

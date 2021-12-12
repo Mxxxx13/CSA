@@ -13,12 +13,22 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-
+// UploadComment
 func UploadComment(c *gin.Context)  {
 	err := service.UploadComment(c)
 	if err != nil {
 		resp.ErrorResp(c,http.StatusBadRequest,"评论失败")
 	} else {
 		resp.SuccessResp(c,"评论成功")
+	}
+}
+
+// DeleteComment
+func DeleteComment(c *gin.Context) {
+	err := service.DeleteComment(c)
+	if err != nil {
+		resp.ErrorResp(c,http.StatusBadRequest,"删除失败")
+	} else {
+		resp.SuccessResp(c,"删除成功")
 	}
 }

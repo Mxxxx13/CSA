@@ -30,7 +30,7 @@ func main() {
 	login.PUT("/blog/like/:id", controller.LikeBlog)
 
 	login.POST("/comment",controller.UploadComment)
-	//login.DELETE("/comment/:id",controller.DeleteComment)
+	login.DELETE("/comment/:id",controller.DeleteComment)
 
 
 	_ = r.Run(":8080")

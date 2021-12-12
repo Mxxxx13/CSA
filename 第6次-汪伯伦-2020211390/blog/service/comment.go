@@ -6,6 +6,7 @@
 package service
 
 import (
+	"log"
 	"strconv"
 
 	"blog/dao"
@@ -13,6 +14,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// UploadComment
 func UploadComment(c *gin.Context) (err error) {
 	content := c.PostForm("content")
 	bid := c.PostForm("bid")
@@ -82,4 +84,15 @@ func GetChildComments(comments []model.Comment,id int) (CommentResps []model.Com
 		}
 	}
 	return
+}
+
+func DeleteComment(c *gin.Context) (err error) {
+	strId := c.Param("id")
+	id, err := strconv.Atoi(strId)
+	if err != nil {
+		log.Printf("atoi err:%v\n", err)
+		return
+	}
+	err = dao.DeleteComment(uint(id))
+	return err
 }
